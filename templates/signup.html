@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <!-- You can add CSS frameworks like Bootstrap here if you need -->
+    <style>
+      #typing-effect {
+        font-family: "Courier New", monospace;
+        white-space: pre; /* Keeps the spacing as is */
+        font-size: 16px;
+        margin-left: -17px;
+        color: white;
+      }
+
+      h2 {
+        color: white;
+        font-size: 14px;
+        font-weight: 300;
+      }
+      h1 {
+        color: white;
+      }
+      label {
+        color: white;
+      }
+      body {
+        font-family: "Courier New", monospace;
+        background-color: #1b1d2a;
+        max-width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("https://media4.giphy.com/media/9bTjZrytydVRK/200.webp?cid=790b7611as4czvsnxr29kusujsqlig91cyhah4jymn4b24ec&ep=v1_gifs_search&rid=200.webp&ct=g");
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background-image: url("https://codemyui.com/wp-content/uploads/2019/06/Shooting-Star-Background-in-Pure-CSS-1.gif");
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="password"],
+      input[type="email"] {
+        width: 100%;
+        font-family: "Courier New", monospace;
+        padding: 10px;
+        border: 1px solid #090808;
+        border-radius: 4px;
+        box-sizing: border-box; /* Added for box-sizing */
+      }
+
+      button {
+        font-family: "Courier New", monospace;
+        background-color: black;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: black;
+      }
+
+      #verifyBtn {
+        background-color: black;
+        margin-right: 10px;
+      }
+
+      #verificationStatus {
+        display: inline-block;
+        margin-left: 10px;
+      }
+      .heading{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .heading a{
+        text-decoration: none;
+        color: rgb(164, 162, 162);
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="typing-effect"></div>
+
+     <div class="heading">
+      <h1>Signup</h1>
+      <h1><a href="/login">Login</a></h1>
+     </div>
+
+      <!-- Registration Form -->
+      <form method="post" action="{{ url_for('register') }}">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input
+            style="background-color: #090808; color: white"
+            type="text"
+            class="form-control"
+            id="username"
+            name="name"
+            placeholder="Enter username"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            style="background-color: #090808; color: white"
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            style="background-color: #090808; color: white"
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter email"
+            required
+          />
+          <br />
+          <br />
+          <button id="verifyBtn">Verify Email</button>
+
+          <div id="otpSection" style="display: none">
+            <div class="form-group">
+              <label for="otp">OTP:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="otp"
+                name="otp"
+                placeholder="Enter OTP"
+                required
+              />
+              <br />
+              <button id="verifyOtpBtn">Verify OTP</button>
+              <span id="otpVerificationStatus"></span>
+            </div>
+          </div>
+        </div>
+        <button type="submit" id="registerBtn" style="display: none">
+          Create Account
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
+
+<script>
+  document
+    .getElementById("verifyBtn")
+    .addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent form submission
+      var email = document.getElementById("email").value;
+      fetch("/send_verification", {
+        method: "POST",
+        body: JSON.stringify({ email: email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.message);
+          alert("Verification Email sent");
+          // Show the OTP section
+          document.getElementById("otpSection").style.display = "block";
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Failed to send verification email"); // Alert for error
+        });
+    });
+
+  document
+    .getElementById("verifyOtpBtn")
+    .addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent form submission
+      var otp = document.getElementById("otp").value;
+      var email = document.getElementById("email").value;
+      fetch("/verify_otp", {
+        method: "POST",
+        body: JSON.stringify({ email: email, otp: otp }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.message);
+          alert(data.message); // Show the message from the server
+          document.getElementById("otpVerificationStatus").innerText =
+            data.message;
+
+          // If email verified successfully, hide the OTP section and show the register button
+          if (data.message === "Email verified successfully") {
+            document.getElementById("otpSection").style.display = "none";
+            document.getElementById("registerBtn").style.display = "block"; // Show the register button
+          }
+        })
+
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Error verifying OTP"); // Alert for error
+        });
+    });
+  function typeWriter(text, elementId, speed) {
+    let i = 0;
+    const element = document.getElementById(elementId);
+    function typing() {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, speed);
+      }
+    }
+    typing();
+  }
+
+  // Example usage
+  const text = "Lets create a account on Jobbot";
+  typeWriter(text, "typing-effect", 50); // Adjust speed as needed
+</script>

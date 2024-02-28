@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a{
+            color: white;
+        }
+        body {
+            font-family: 'Courier New', monospace;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+form {
+    background: white;
+    background-image: url("https://media0.giphy.com/media/7AtHoQ9XWbpwLRxs0t/giphy.webp?cid=790b7611t2p7yg5gzi7bth4xjg3unwv740x70z4yfmckmuo2&ep=v1_gifs_search&rid=giphy.webp&ct=g");
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+h1{
+    color: white;
+}
+.form-group label {
+    display: block;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    font-family: 'Courier New', monospace;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    font-family: 'Courier New', monospace;
+    width: 100%;
+    padding: 10px;
+    background-color: #0c0e11;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+}
+
+.heading{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .heading a{
+        text-decoration: none;
+        color: rgb(164, 162, 162);
+      }
+
+    </style>
+</head>
+<body>
+    <!-- login.html -->
+
+<form method="post" action="{{ url_for('login') }}">
+    <div class="form-group">
+       
+        <div class="heading">
+            <h1>Login</h1>
+            <h1><a href="/">Signup</a></h1>
+           </div>
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="name" placeholder="Enter username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+    </div>
+    <a href="{{ url_for('forgot_password') }}">Forgot Password?</a>
+<br>
+<br>
+    <button type="submit">Login</button>
+</form>
+
+
+</body>
+</html>

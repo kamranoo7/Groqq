@@ -1,0 +1,6 @@
+MAIL_SERVER: smtp.gmail.com
+MAIL_PORT: 587
+MAIL_USERNAME: iamkamrankhan00@gmail.com
+# Note: MAIL_PASSWORD will still be fetched from environment variables for security
+MAIL_USE_TLS: true
+MAIL_USE_SSL: false

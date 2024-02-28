@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    overflow: hidden;
+    background: #000;
+  }
+  
+  .slider-holder {
+
+    display: none;
+  }
+
+  button{
+    font-size: 20px;
+    font-weight: bold;
+    border: 3px solid rgb(195, 195, 195);
+    padding: 5px;
+    background-color: #4b494922;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .buttonBox button {
+    display: block;
+    position: absolute;
+    top: 50%;
+ 
+    z-index: 20;
+  }
+  
+  .left {
+    left: 20px;
+  }
+  
+  .right {
+    right: 20px;
+  }
+  
+  .slider-slides {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    transition: all 0.5s;
+  }
+  
+  .slide-wrapper {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .slide {
+    height: 50vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .color-container {
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    background: #222222;
+    color: white;
+    animation: glowing 2s ease-in-out infinite;
+    border-radius: 15px;
+  }
+
+  @keyframes glowing {
+    0% {
+      box-shadow: rgba(243, 28, 214, 0.199) 0px 0px 0px;
+    }
+    50% {
+      box-shadow: rgb(239, 101, 221) 0px 0px 20px;
+    }
+    100% {
+      box-shadow: rgb(243, 28, 214) 0px 0px 0px;
+    }
+  }
+
+  .submit{
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+  }
