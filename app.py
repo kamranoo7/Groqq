@@ -8,6 +8,7 @@ from flask import (
     session,
     Response,
 )
+
 import weaviate
 import openai
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -27,7 +28,7 @@ import secrets
 import uuid
 import os
 from dotenv import load_dotenv
-import yaml
+
 
 app = Flask(__name__)
 mail = Mail(app)
