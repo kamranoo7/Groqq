@@ -227,15 +227,14 @@ function stopAnimation() {
   blobs.classList.remove("blobactive");
 }
 
-let stream = null;
+
 let transcriptText = "";
+let stream = null;
+
 async function toggleRecording() {
   const fast = fastBtn.checked || false;
   const slow = slowBtn.checked || false;
   const groq = groqBtn.checked || false;
-  if (audio) {
-    audio.pause();
-  }
   playSoundEffect(voiceSound);
   if (mediaRecorder && mediaRecorder.state === "recording") {
     mediaRecorder.stop();

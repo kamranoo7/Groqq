@@ -162,6 +162,12 @@
         <a href="/" onclick="playSoundEffect(interfaceSound);">Home Page</a>
       </button>
     </div>
+    <h2>Download Files from Google Drive Folder</h2>
+    <form id="downloadForm">
+        <label for="folderUrl">Enter Google Drive Folder URL:</label><br>
+        <input type="text" id="folderUrl" name="folderUrl" required><br>
+        <input type="submit" value="Download Files">
+    </form>
     <!-- Trigger/Open The Modal Button -->
 <!-- <button id="myBtn">Recover Password</button> -->
 <!-- <button id="logout">Logout</button> -->
@@ -271,3 +277,27 @@
 
   </script>
   
+
+  <script>
+    document.getElementById('downloadForm').onsubmit = async function(
+event) {
+  event.preventDefault();
+  const folderUrl = document.getElementById('folderUrl').value;
+  const submitButton = event.target.querySelector('input[type="submit"]');
+  submitButton.value = 'Downloading...';
+  submitButton.disabled = true;
+
+  try {
+      const response = await fetch('/download_folder?folder_url=' + encodeURIComponent(folderUrl), { method: 'GET' });
+      const responseBody = await response.text();
+      alert(responseBody);
+  } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to download files. Please try again.');
+  } finally {
+      submitButton.value = 'Download Files';
+      submitButton.disabled = false;
+  }
+};
+
+  </script>
