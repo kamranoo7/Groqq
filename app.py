@@ -36,9 +36,9 @@ app.secret_key = "JobBot"
 
 load_dotenv()
 
-with open('mail_config.yaml', 'r') as file:
-    mail_config = yaml.safe_load(file)
-app.config.update(mail_config)
+# with open('mail_config.yaml', 'r') as file:
+#     mail_config = yaml.safe_load(file)
+# app.config.update(mail_config)
 
 app.config["MAIL_PASSWORD"] = "zjwj qhxq askj mxbh"
 
