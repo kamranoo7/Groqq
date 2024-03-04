@@ -2778,3 +2778,21 @@ can only concatenate str (not "NoneType") to str
 
 2024-02-28 18:36:45
 Error code: 400 - {'error': {'message': 'Audio file is too short. Minimum audio length is 0.1 seconds.', 'type': 'invalid_request_error', 'param': 'file', 'code': 'audio_too_short'}}
+
+
+
+
+2024-02-28 19:11:08
+Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-kKThV***************************************qapF. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+
+
+
+
+2024-02-28 19:11:15
+Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-kKThV***************************************qapF. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+
+
+
+
+2024-02-28 19:32:24
+can only concatenate str (not "NoneType") to str

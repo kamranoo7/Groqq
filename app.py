@@ -48,7 +48,7 @@ audio_speech = None
 
 
 
-key = "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"
+key= os.getenv('API_KEY')
 lm_client = openai.OpenAI(api_key=key)
 service_account_file = "cred.json"
 credentials = service_account.Credentials.from_service_account_file(
